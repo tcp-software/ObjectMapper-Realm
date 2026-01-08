@@ -19,7 +19,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/realm-cocoa.git", .exact(Version(realmVersionStr)!)),
+        .package(url: "https://github.com/realm/realm-swift", .exact(Version(realmVersionStr)!)),
         .package(url: "https://github.com/tristanhimmelman/ObjectMapper.git", .exact(Version(objectMapperVersionStr)!)),
     ],
     targets: [
@@ -30,9 +30,9 @@ let package = Package(
                 "ObjectMapper"
             ],
             path: "ObjectMapper+Realm",
-            exclude: [
-                "ObjectMapper+RealmTest"
-            ]
+//            exclude: [
+//                "ObjectMapper+RealmTest"
+//            ]
         ),
     ],
     swiftLanguageVersions: [.v5]
