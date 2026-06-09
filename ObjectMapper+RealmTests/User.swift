@@ -6,13 +6,14 @@
 //  Copyright 2017 Jake Peterson. All rights reserved.
 //
 
+import Foundation
 import ObjectMapper
 import RealmSwift
 import ObjectMapper_Realm
 
 class Storage {
     static let shared = Storage()
-    
+
     var realm: Realm {
         get {
             let config = Realm.Configuration(inMemoryIdentifier: "test")
@@ -22,22 +23,18 @@ class Storage {
 }
 
 class User: Object, Mappable {
-    @objc dynamic var username: NSString = ""
+    @Persisted(primaryKey: true) var username: String = ""
     var friends: List<User>?
-    
-    required convenience init?(map: Map) {
+
+    required convenience init?(map: ObjectMapper.Map) {
         self.init()
     }
-    
-    override class func primaryKey() -> String? {
-        return "username"
-    }
-    
-    func mapping(map: Map) {
+
+    func mapping(map: ObjectMapper.Map) {
         username              <- map["username"]
         friends               <- (map["friends"], ListTransform<User>(onSerialize: onSerialize))
     }
-    
+
     private func onSerialize(users: List<User>) {
         let realm = Storage.shared.realm
         try! realm.write {

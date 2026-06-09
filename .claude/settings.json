@@ -1,0 +1,28 @@
+{
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-harness-version.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "description": "Warns when context window is getting full",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/context-monitor.js"
+          }
+        ]
+      }
+    ]
+  }
+}

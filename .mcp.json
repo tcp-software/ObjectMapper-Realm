@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "swift-lsp": {
+      "command": "uvx",
+      "args": ["swiftlens"]
+    }
+  }
+}
