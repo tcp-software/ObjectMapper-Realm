@@ -26,3 +26,7 @@ Carthage/
 Cartfile.resolved
 
 Pods/
+
+# Harness plan and progress files (local development only)
+.harness/plans/
+.harness/*progress*
